@@ -37,9 +37,8 @@ void main(void) {
 	while(1) {
 		if (fileContientDonnees()) {
 			c = defile();
-			calculatrice(c);
+			affiche(calculatrice(c));
 		}
-		exploreClavier();
 	}
 }
 #else

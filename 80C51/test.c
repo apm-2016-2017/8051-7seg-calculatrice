@@ -2,6 +2,7 @@
 static unsigned char echecs = 0;
 
 void initialiseTests() {
+	echecs = 0;
 }
 
 void verifie(int valeurObtenue, int valeurAttendue) {
@@ -13,5 +14,4 @@ void verifie(int valeurObtenue, int valeurAttendue) {
 unsigned char nombreDeTestsEnEchec() {
 	return echecs;
 }
-
 #endif

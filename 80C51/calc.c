@@ -1,4 +1,3 @@
-#include "affiche.h"
 #include "test.h"
 
 unsigned char operation = '=';
@@ -25,7 +24,7 @@ unsigned int executeOperation(unsigned int a, unsigned char operation, unsigned 
 	}
 }
 
-void calculatrice(unsigned char ascii) {
+unsigned int calculatrice(unsigned char ascii) {
 	switch (ascii) {
 		case '0':
 		case '1':
@@ -39,7 +38,7 @@ void calculatrice(unsigned char ascii) {
 		case '9':
 			valeur *= 10;
 			valeur += ascii - '0';
-			break;
+			return valeur;
 
 		case '+':
 		case '-':
@@ -49,52 +48,46 @@ void calculatrice(unsigned char ascii) {
 			accumulateur = executeOperation(accumulateur, operation, valeur);
 			operation = ascii;
 			valeur = 0;
-			affiche(accumulateur);
-			break;
+			return accumulateur;
 	}
+	return 0;
 }
 
 #ifdef TEST
 void testeAddition() {
 	reinitialiseCalculatrice();
 
-	calculatrice('1');
-	calculatrice('6');
-	calculatrice('+');
-	calculatrice('5');
-	calculatrice('7');
-	calculatrice('=');
-
-	verifie(accumulateur, 73);
+	verifie(calculatrice('1'),  1);
+	verifie(calculatrice('6'), 16);
+	verifie(calculatrice('+'), 16);
+	verifie(calculatrice('5'),  5);
+	verifie(calculatrice('7'), 57);
+	verifie(calculatrice('='), 73);
 }
 
 void testeAdditionEtMultiplication() {
 	reinitialiseCalculatrice();
 
-	calculatrice('3');
-	calculatrice('*');
-	calculatrice('2');
-	calculatrice('+');
-	calculatrice('4');
-	calculatrice('=');
-
-	verifie(accumulateur, 10);
+	verifie(calculatrice('3'), 3);
+	verifie(calculatrice('*'), 3);
+	verifie(calculatrice('2'), 2);
+	verifie(calculatrice('+'), 6);
+	verifie(calculatrice('4'), 4);
+	verifie(calculatrice('='), 10);
 }
 
 void testeDeuxOperations() {
 	reinitialiseCalculatrice();
 
-	calculatrice('6');
-	calculatrice('/');
-	calculatrice('2');
-	calculatrice('=');
-	verifie(accumulateur, 3);
+	verifie(calculatrice('6'), 6);
+	verifie(calculatrice('/'), 6);
+	verifie(calculatrice('2'), 2);
+	verifie(calculatrice('='), 3);
 
-	calculatrice('2');
-	calculatrice('+');
-	calculatrice('7');
-	calculatrice('=');
-	verifie(accumulateur, 9);
+	verifie(calculatrice('2'), 2);
+	verifie(calculatrice('+'), 2);
+	verifie(calculatrice('7'), 7);
+	verifie(calculatrice('='), 9);
 }
 
 void testeCalculatrice() {
