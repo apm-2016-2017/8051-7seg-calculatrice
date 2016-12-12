@@ -65,7 +65,7 @@ void testeAddition() {
 	verifie(calculatrice('='), 73);
 }
 
-void testeAdditionEtMultiplication() {
+void testeDeuxOperationsChainees() {
 	reinitialiseCalculatrice();
 
 	verifie(calculatrice('3'), 3);
@@ -76,7 +76,7 @@ void testeAdditionEtMultiplication() {
 	verifie(calculatrice('='), 10);
 }
 
-void testeDeuxOperations() {
+void testeDeuxOperationsSeparees() {
 	reinitialiseCalculatrice();
 
 	verifie(calculatrice('6'), 6);
@@ -90,9 +90,23 @@ void testeDeuxOperations() {
 	verifie(calculatrice('='), 9);
 }
 
+void testeDeuxOperationsChainessAvecEgal() {
+	reinitialiseCalculatrice();
+
+	verifie(calculatrice('8'), 8);
+	verifie(calculatrice('/'), 8);
+	verifie(calculatrice('2'), 2);
+	verifie(calculatrice('='), 4);
+
+	verifie(calculatrice('+'), 4);
+	verifie(calculatrice('1'), 1);
+	verifie(calculatrice('='), 5);
+}
+
 void testeCalculatrice() {
 	testeAddition();
-	testeAdditionEtMultiplication();
-	testeDeuxOperations();
+	testeDeuxOperationsSeparees();
+	testeDeuxOperationsChainees();
+	testeDeuxOperationsChainessAvecEgal();
 }
 #endif
