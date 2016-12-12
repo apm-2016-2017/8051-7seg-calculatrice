@@ -1,6 +1,6 @@
-#ifdef TEST
 static unsigned char echecs = 0;
 
+#ifdef TEST
 void initialiseTests() {
 	echecs = 0;
 }
